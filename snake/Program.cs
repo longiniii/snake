@@ -10,6 +10,8 @@ namespace snake
     {
         static void Main(string[] args)
         {
+            Snake TheSnake = new Snake();
+            TheSnake.Run();
         }
     }
 }
