@@ -21,10 +21,14 @@ namespace snake
         }
         public void Run()
         {
+            // add game over, main menu, play again
+            // fix the bug where snake can move backwards done
+            // add generating apples
+            // add colission detection
             Task rendering = Task.Run(() => TheRenderer.TheRenderer());
             Task movingSnake = Task.Run(() => TheSnakeLogic.MoveSnake());
             Task TakingInput = Task.Run(() => TheUserInput.TheInput());
-            Task.WaitAll(rendering, movingSnake);
+            Task.WaitAll(rendering, movingSnake, TakingInput);
         }
     }
 }
