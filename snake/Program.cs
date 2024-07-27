@@ -10,8 +10,9 @@ namespace snake
     {
         static void Main(string[] args)
         {
-            Snake TheSnake = new Snake();
-            TheSnake.Run();
+            Settings TheSettings = new Settings();
+            Menu TheMenu = new Menu(TheSettings);
+            TheMenu.MainMenu();
         }
     }
 }

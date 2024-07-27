@@ -29,15 +29,15 @@ namespace snake
         public Renderer(Snake snake)
         {
             TheSnake = snake;
-            HorizontalLength = TheSnake.TheSettings.MapSize[0];
-            VerticalLength = TheSnake.TheSettings.MapSize[1];
         }
         public void TheRenderer() 
         {
+            HorizontalLength = TheSnake.TheSettings.MapSize[0];
+            VerticalLength = TheSnake.TheSettings.MapSize[1];
+            Console.Clear();
             Console.CursorVisible = false;
-            while (true)
+            while (!TheSnake.GameEnded)
             {
-                //TheSnake.TheSnakeLogic.Direction = "left";
                 Apples = TheSnake.TheSnakeLogic.Apples;
                 Snake = TheSnake.TheSnakeLogic.Snake;
                 Stopwatch stopwatch = new Stopwatch();
@@ -72,8 +72,9 @@ namespace snake
                 }
                 stopwatch.Stop();
                 Console.WriteLine(string.Join("\n", theMap.ToArray()));
+                Console.WriteLine('\n');
+                Console.WriteLine(TheSnake.Score + "o");
                 if (RefreshRate >= stopwatch.ElapsedMilliseconds) Thread.Sleep((int)(RefreshRate - stopwatch.ElapsedMilliseconds));
-                // consider using task.delay insteaad
             }
 
         }

@@ -16,7 +16,7 @@ namespace snake
         }
         public void TheInput()
         {
-            while (true)
+            while (!TheSnake.GameEnded)
             {
                 ConsoleKeyInfo key = Console.ReadKey(intercept: true);
                 if ((key.Key == ConsoleKey.UpArrow || key.Key == ConsoleKey.W) && TheSnake.TheSnakeLogic.CanMoveThatDirection("top"))

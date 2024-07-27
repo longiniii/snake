@@ -1,4 +1,5 @@
 ﻿using System;
+using System.CodeDom;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.AccessControl;
@@ -17,7 +18,40 @@ namespace snake
         {
             SetSpeed("normal");
             SetMapSize("medium");
-            SetAmountOfApples("one");
+            SetAmountOfApples("a few");
+        }
+        public void SettingsMenu()
+        {
+            Console.WriteLine("1 - change snake speed");
+            Console.WriteLine("2 - change map size");
+            Console.WriteLine("3 - change amount of apples");
+            Console.WriteLine("4 - quit");
+            int chosenItemNum = -1; // had to assign a value beforehand cause of an error, it will change anyway
+            int[] itemMargins = new int[2] { 1, 4 }; // these are the minimum and the maxium numbers that an user can choose
+            while (chosenItemNum < itemMargins[0] || chosenItemNum > itemMargins[1])
+            {
+                try
+                {
+                    chosenItemNum = Convert.ToInt32(Console.ReadLine());
+                    if (chosenItemNum < itemMargins[0] || chosenItemNum > itemMargins[1]) throw new Exception();
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message); // fix this later create another exception
+                }
+            }
+            if (chosenItemNum == 1)
+            {
+               SetSpeed(AskSpeed());
+            }
+            else if (chosenItemNum == 2)
+            {
+                SetMapSize(AskMapSize());
+            }
+            else if (chosenItemNum == 3)
+            {
+                SetAmountOfApples(AskAmountOfApples());
+            }
         }
         public string AskSpeed()
         {
@@ -40,11 +74,11 @@ namespace snake
             if (mapSize == "small")
             {
                 MapSize[0] = 13;
-                MapSize[1] = 6;
+                MapSize[1] = 7;
             } else if (mapSize == "medium")
             {
                 MapSize[0] = 22;
-                MapSize[1] = 10;
+                MapSize[1] = 11;
             } else if (mapSize == "big")
             {
                 MapSize[0] = 42;
